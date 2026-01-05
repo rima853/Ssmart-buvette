@@ -1,0 +1,307 @@
+PHP FILES EXPLANATION - RESTAURANT MANAGEMENT SYSTEM
+==================================================
+
+This document provides detailed explanations of all PHP files in the restaurant management system,
+including their purpose, functionality, and key modifications made during development.
+
+================================================================================
+1. connect.php
+================================================================================
+
+PURPOSE:
+--------
+This file establishes the database connection for the entire application using PDO (PHP Data Objects).
+
+KEY COMPONENTS:
+- Database configuration variables (host, database name, username, password)
+- PDO connection setup with error handling
+- UTF-8 character encoding support
+
+WHAT WE DID:
+- Set up MySQL database connection to 'db' database on localhost
+- Enabled exception-based error reporting for better debugging
+- Used prepared statements approach for security
+
+CODE FLOW:
+1. Define database credentials
+2. Create PDO instance with connection string
+3. Set error mode to exceptions
+4. Handle connection failures gracefully
+
+================================================================================
+2. INDEX.php (Main Homepage)
+================================================================================
+
+PURPOSE:
+--------
+This is the main landing page that authenticated users see after logging in.
+
+KEY COMPONENTS:
+- Session validation and redirection
+- Welcome message with user's first name
+- Navigation inclusion
+- Basic restaurant information display
+
+WHAT WE DID:
+- Added session check to ensure only logged-in users can access
+- Included navigation bar via nav.php
+- Displayed personalized welcome message
+- Added footer with copyright information
+- Included JavaScript for dynamic navigation elements
+
+CODE FLOW:
+1. Start session and check authentication
+2. Redirect to login if not authenticated
+3. Include navigation
+4. Display welcome content
+5. Include footer
+
+================================================================================
+3. log_in.php
+================================================================================
+
+PURPOSE:
+--------
+Handles user authentication and login functionality.
+
+KEY COMPONENTS:
+- Login form processing
+- Password verification with hashing
+- Session management
+- Login attempt logging
+- Role-based access control
+
+WHAT WE DID:
+- Implemented secure password verification using password_verify()
+- Added session regeneration for security
+- Logged all login attempts (successful/failed) to database
+- Set up user session variables (ID, email, name, role)
+- Added proper error handling and user feedback
+
+CODE FLOW:
+1. Start session and include database connection
+2. Process POST data if form submitted
+3. Validate credentials against database
+4. Set session variables on successful login
+5. Log attempt to database
+6. Redirect to homepage or show error
+
+================================================================================
+4. register.php
+================================================================================
+
+PURPOSE:
+--------
+Manages user registration and account creation.
+
+KEY COMPONENTS:
+- Registration form validation
+- Password hashing and confirmation
+- Email uniqueness checking
+- User data insertion
+- Success/error messaging
+
+WHAT WE DID:
+- Added comprehensive form validation (required fields, email format, password length)
+- Implemented secure password hashing with password_hash()
+- Added duplicate email checking
+- Created user accounts with default 'user' role
+- Added auto-redirect to login page after successful registration
+- Fixed CSS styling issues for proper form display
+
+CODE FLOW:
+1. Start session and enable error reporting
+2. Process POST data and validate inputs
+3. Check for existing email
+4. Hash password and insert new user
+5. Display success message and redirect
+6. Show error messages for validation failures
+
+================================================================================
+5. nav.php
+================================================================================
+
+PURPOSE:
+--------
+Provides navigation menu for authenticated users with role-based menu items.
+
+KEY COMPONENTS:
+- Session validation
+- Role-based navigation display
+- Menu structure with links
+
+WHAT WE DID:
+- Added session check to prevent access by non-logged-in users
+- Implemented role-based menu visibility (users see different options than admins)
+- Created navigation structure with restaurant branding
+- Added conditional menu items based on user role
+
+CODE FLOW:
+1. Check if user is logged in, redirect if not
+2. Determine user role from session
+3. Display navigation with appropriate menu items
+4. Hide admin-only features from regular users
+
+================================================================================
+6. logout.php
+================================================================================
+
+PURPOSE:
+--------
+Handles secure user logout and session destruction.
+
+KEY COMPONENTS:
+- Session cleanup
+- Cookie destruction
+- Secure redirection
+
+WHAT WE DID:
+- Implemented complete session destruction
+- Added cookie cleanup for session cookies
+- Used secure session handling practices
+- Redirected to login page after logout
+
+CODE FLOW:
+1. Start session
+2. Clear all session data
+3. Destroy session cookie if exists
+4. Destroy session
+5. Redirect to login page
+
+================================================================================
+7. menu.php
+================================================================================
+
+PURPOSE:
+--------
+Displays the restaurant menu to regular users (not admins).
+
+KEY COMPONENTS:
+- Menu item display
+- Role restriction (users only)
+- Static menu content
+
+WHAT WE DID:
+- Restricted access to regular users only (admins redirected)
+- Created structured menu display with categories
+- Added pricing information
+- Styled menu items for better presentation
+
+CODE FLOW:
+1. Check authentication and user role
+2. Redirect non-users or unauthenticated users
+3. Display menu categories and items
+4. Show pricing for each dish
+
+================================================================================
+8. contact.php
+================================================================================
+
+PURPOSE:
+--------
+Provides a contact form for users to send messages to restaurant staff.
+
+KEY COMPONENTS:
+- Contact form processing
+- Message storage in database
+- Form validation
+- Success/error feedback
+
+WHAT WE DID:
+- Added form validation for all required fields
+- Implemented message storage in database
+- Added email format validation
+- Provided user feedback for successful submissions
+- Restricted to authenticated users only
+
+CODE FLOW:
+1. Check authentication
+2. Process form submission
+3. Validate input data
+4. Store message in database
+5. Display success/error messages
+
+================================================================================
+9. reservation.php
+================================================================================
+
+PURPOSE:
+--------
+Handles table reservations, menu selection, and reservation management.
+
+KEY COMPONENTS:
+- Reservation form processing
+- Menu item selection with quantities
+- Total price calculation
+- Admin reservation viewing
+- User reservation history
+
+WHAT WE DID:
+- Added comprehensive reservation form with validation
+- Implemented menu selection with checkboxes and quantity inputs
+- Created total price calculation for selected dishes
+- Added admin view for managing all reservations
+- Added user view for past reservations
+- Stored dish selections as JSON in database
+- Fixed table display issues and added Total column
+
+CODE FLOW:
+1. Check authentication and user role
+2. For users: Display reservation form and past reservations
+3. For admins: Display all reservations table
+4. Process form submissions with validation
+5. Calculate totals from selected dishes
+6. Store reservation data in database
+7. Display appropriate views based on role
+
+================================================================================
+DATABASE STRUCTURE OVERVIEW
+================================================================================
+
+The system uses several database tables:
+- users: User accounts with roles
+- roles: User role definitions
+- reservations: Table reservations with dish selections
+- messages: Contact form messages
+- login_attempts: Security logging
+
+================================================================================
+SECURITY MEASURES IMPLEMENTED
+================================================================================
+
+1. Password hashing with password_hash() and verification with password_verify()
+2. Prepared statements for all database queries
+3. Session management with regeneration
+4. Input validation and sanitization
+5. Role-based access control
+6. Login attempt logging
+7. Session cookie security settings
+
+================================================================================
+KEY MODIFICATIONS MADE DURING DEVELOPMENT
+================================================================================
+
+1. Added total price calculation in reservation system
+2. Fixed CSS styling issues in register.php
+3. Implemented role-based navigation
+4. Added comprehensive form validation
+5. Created admin reservation management interface
+6. Added user reservation history display
+7. Implemented secure session handling
+8. Added login attempt logging for security
+
+================================================================================
+FILE ORGANIZATION
+================================================================================
+
+- connect.php: Database connection
+- INDEX.php: Homepage
+- log_in.php: Authentication
+- register.php: User registration
+- nav.php: Navigation component
+- logout.php: Session termination
+- menu.php: Menu display
+- contact.php: Contact form
+- reservation.php: Reservation system
+
+All files follow consistent patterns for session management, database access, and user authentication.

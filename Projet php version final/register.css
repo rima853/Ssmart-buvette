@@ -1,0 +1,240 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f7dfd6 0%, #e8c9c0 50%, #f7dfd6 100%);
+  background-attachment: fixed;
+  color: #362323;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Header styles (common across pages) */
+header {
+  background-color: rgb(46, 28, 28);
+  color: rgb(201, 156, 135);
+  padding: 20px 0;
+  text-align: center;
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  background-image: url("rest.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0) 20%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: -1;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #362323;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+header nav div ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem;
+  display: flex;
+  background-color: rgba(121, 92, 92, 0.9);
+  justify-content: center;
+  gap: 3rem;
+  border: rgb(224, 208, 208) 2px solid;
+  flex-wrap: wrap;
+}
+
+header nav div ul li {
+  display: inline;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+header nav div ul li a {
+  color: rgb(224, 208, 208);
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+header nav div ul li a:hover {
+  color: rgb(201, 156, 135);
+  background-color: rgba(46, 28, 28, 0.5);
+  border-radius: 5px;
+}
+
+header nav div ul li hr {
+  display: none;
+}
+
+/* Alert styles */
+.alert {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.alert-error {
+  background-color: #fee;
+  color: #c33;
+  border: 1px solid #fcc;
+}
+
+.alert-success {
+  background-color: #efe;
+  color: #363;
+  border: 1px solid #cfc;
+}
+
+/* Register page styles */
+.register-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 40px 30px;
+  background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(90, 58, 58, 0.1);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.register-header::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #5a3a3a, transparent);
+  border-radius: 2px;
+}
+
+.register-header h2 {
+  font-size: 2.5rem;
+  color: #362323;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.register-header p {
+  color: #5a3a3a;
+  font-style: italic;
+}
+
+.register-header::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #5a3a3a, transparent);
+  border-radius: 2px;
+}
+
+.register-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.register-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.register-form .full-width {
+  grid-column: span 2;
+}
+
+.register-form label {
+  font-weight: 600;
+  color: #362323;
+}
+
+.register-form input {
+  padding: 12px 15px;
+  border: 2px solid #5a3a3a;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #362323;
+  transition: all 0.3s ease;
+}
+
+.register-form input:focus {
+  outline: none;
+  border-color: #362323;
+  box-shadow: 0 0 0 4px rgba(90, 58, 58, 0.1);
+}
+
+.register-submit-btn {
+  grid-column: span 2;
+  padding: 15px;
+  background: linear-gradient(135deg, #5a3a3a 0%, #362323 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(90, 58, 58, 0.3);
+}
+
+.register-submit-btn:hover {
+  background: linear-gradient(135deg, #362323 0%, #5a3a3a 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(90, 58, 58, 0.4);
+}
+
+/* Footer styles */
+footer {
+  background-color: rgb(46, 28, 28);
+  color: rgb(201, 156, 135);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 50px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}

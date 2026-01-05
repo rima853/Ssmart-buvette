@@ -1,0 +1,17 @@
+{
+    "name": "pc/finally_im_gonna_kms-ilied",
+    "autoload": {
+        "psr-4": {
+            "Pc\\FinallyImGonnaKmsIlied\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ichrak000",
+            "email": "ichrakelfahsi@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.0"
+    }
+}

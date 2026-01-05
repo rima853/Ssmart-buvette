@@ -1,0 +1,90 @@
+CHANGES MADE TO RESERVATION.PHP DURING THIS SESSION
+==================================================
+
+Date: [Current Session]
+File: reservation.php
+
+SUMMARY OF CHANGES:
+==================
+
+1. FIXED DISH SELECTION LINKING ISSUE
+-------------------------------------
+Problem: Selected dishes and quantities weren't appearing in "Vos Réservations Passées" table
+
+Root Cause: Categories array in dish collection code didn't match form field names
+- Form used: ['entrees', 'plats', 'desserts', 'boissons'] (plural)
+- Code was looking for: ['entree', 'plat', 'dessert', 'boisson'] (singular)
+
+Fix Applied:
+Line ~58: Changed categories array from singular to plural forms
+BEFORE:
+$categories = ['entree', 'plat', 'dessert', 'boisson'];
+
+AFTER:
+$categories = ['entrees', 'plats', 'desserts', 'boissons'];
+
+Result: Quantities are now properly captured and stored in database as JSON
+
+2. FIXED FORM RESUBMISSION ON PAGE REFRESH
+------------------------------------------
+Problem: Refreshing page after successful reservation created duplicate entries
+
+Root Cause: POST request was being resubmitted on page refresh (classic web development issue)
+
+Fix Applied: Implemented Post-Redirect-Get (PRG) pattern
+
+A) Added redirect after successful database insertion:
+Lines ~88-90:
+AFTER successful database insert:
+// Redirect to prevent form resubmission on refresh
+header('Location: reservation.php?success=1');
+exit;
+
+B) Added success message handling at the top:
+Lines ~40-44:
+AFTER $messageType initialization:
+// Check for success parameter from redirect
+if (isset($_GET['success']) && $_GET['success'] == '1') {
+    $message = "Réservation reçue ! Nous vous avons envoyé un email de confirmation à votre adresse email.";
+    $messageType = 'success';
+}
+
+Result: No more duplicate reservations on page refresh, proper success message displayed
+
+FUNCTIONALITY NOW WORKING:
+==========================
+
+✅ Dish Selection: Users can select dishes with checkboxes and set quantities
+✅ Data Storage: Selected dishes and quantities stored as JSON in preferences field
+✅ Past Reservations Display: Shows selected dishes with quantities (e.g., "Steak frites (x2), Tiramisu (x1)")
+✅ No Duplicate Reservations: Page refresh doesn't create duplicate entries
+✅ Success Message: Proper confirmation message after successful submission
+
+TECHNICAL DETAILS:
+==================
+
+- Dish data stored in format: "Plats sélectionnés: [{"category":"entrees","name":"Salade César","quantity":2}]"
+- Display parsing: JSON decoded and formatted as "Dish Name (xQuantity)"
+- Form validation: All existing validations preserved
+- Database schema: No changes needed, uses existing preferences TEXT field
+- JavaScript: Existing toggle functionality for quantity inputs preserved
+
+FILES MODIFIED:
+===============
+- reservation.php (all changes made to this file)
+
+TODO ITEMS COMPLETED:
+=====================
+- [x] Update reservation.php: Add menu arrays (entrées, plats, desserts, boissons) based on menu.php
+- [x] Replace the broken "Choisissez un produit" div with structured sections for each menu category
+- [x] For each dish, add checkbox and hidden quantity input (shown via JS when checked)
+- [x] Add JavaScript to toggle quantity inputs on checkbox change
+- [x] Update PHP form handling to collect selected dishes and quantities into an array
+- [x] Store selected dishes as JSON in the preferences field of reservations table
+- [x] Test form submission and verify data storage (issues found and fixed)
+- [x] Update admin view and user past reservations to display selected dishes if needed (user view updated)
+
+REMAINING TODO ITEMS:
+=====================
+- [ ] Update admin view to parse and display selected dishes (currently shows raw JSON)
+- [ ] Thorough testing of all edge cases and scenarios
