@@ -50,7 +50,7 @@ Le développement a suivi le **modèle Waterfall**, incluant l’analyse des bes
 ```bash
 git clone https://github.com/ton-username/smart-buvette.git
 2. Installer et configurer XAMPP / WAMP ou tout serveur PHP compatible
-3. Importer la base de données MySQL fournie (smart_buvette.sql) via phpMyAdmin
+3. Importer la base de données MySQL fournie  via phpMyAdmin
 4. Configurer le fichier connect.php avec vos informations de base de données :
 $db_host = '127.0.0.1';
 $db_name = 'smart_buvette';
@@ -58,10 +58,12 @@ $db_user = 'root';
 $db_pass = '';
 5. Placer le projet dans le dossier htdocs (ou équivalent)
 6. Lancer l’application via http://localhost/nom_du_dossier
-7. Configurer Phpmailer dans send-password-reset.php pour la réinitialisation des mots de passe
+7. Configurer Phpmailer pour la réinitialisation des mots de passe
+
+
 
 ## 👥 Membres du groupe
 
-- Rim Aassifar (GitHub :)  
-- Ichrak El Fahsi (GitHub : )  
-- Khaoula El Mazouzi (GitHub : )
+- Rim Aassifar (GitHub :https://github.com/rima853)  
+- Ichrak El Fahsi (GitHub :https://github.com/ichrak000 )  
+- Khaoula El Mazouzi (GitHub :https://github.com/khaoulakhaoula20maazouzi-hue )
