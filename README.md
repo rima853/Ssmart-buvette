@@ -59,8 +59,6 @@ $db_pass = '';
 5. Placer le projet dans le dossier htdocs (ou équivalent)
 6. Lancer l’application via http://localhost/nom_du_dossier
 7. Configurer Phpmailer pour la réinitialisation des mots de passe
-
-
 ---
 
 ## 👥 Membres du groupe
@@ -68,3 +66,12 @@ $db_pass = '';
 - Rim Aassifar (GitHub :https://github.com/rima853)  
 - Ichrak El Fahsi (GitHub :https://github.com/ichrak000 )  
 - Khaoula El Mazouzi (GitHub :https://github.com/khaoulakhaoula20maazouzi-hue )
+
+---
+
+
+
+
+
+
+
