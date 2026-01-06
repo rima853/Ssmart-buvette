@@ -61,7 +61,7 @@ $db_pass = '';
 7. Configurer Phpmailer pour la réinitialisation des mots de passe
 ---
 
-### 👥 Membres du groupe
+## 👥 Membres du groupe
 
 - Rim Aassifar (GitHub :https://github.com/rima853)  
 - Ichrak El Fahsi (GitHub :https://github.com/ichrak000 )  
